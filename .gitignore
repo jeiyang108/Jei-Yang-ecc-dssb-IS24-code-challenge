@@ -43,6 +43,10 @@ testem.log
 Thumbs.db
 
 #Visual Studio
-ECC.API/bin/
-ECC.API/obj/
-.vs/ECC/FileContentIndex/
+/ECC.API/bin/*
+/ECC.API/obj/*
+/.vs/ECC/
+ECC.API/bin
+ECC.API/obj
+*.pdb
+*.dll
