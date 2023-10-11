@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECC.API", "ECE.API\ECC.API.csproj", "{2941024B-4C51-4B4D-BF4E-930AD82BCB4E}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ECC.UI", "ECC.UI\ECC.UI.esproj", "{EAD3A0CC-211F-48B9-9CF2-ECC74C54CAD8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,12 @@ Global
 		{2941024B-4C51-4B4D-BF4E-930AD82BCB4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2941024B-4C51-4B4D-BF4E-930AD82BCB4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2941024B-4C51-4B4D-BF4E-930AD82BCB4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAD3A0CC-211F-48B9-9CF2-ECC74C54CAD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAD3A0CC-211F-48B9-9CF2-ECC74C54CAD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAD3A0CC-211F-48B9-9CF2-ECC74C54CAD8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EAD3A0CC-211F-48B9-9CF2-ECC74C54CAD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAD3A0CC-211F-48B9-9CF2-ECC74C54CAD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAD3A0CC-211F-48B9-9CF2-ECC74C54CAD8}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
