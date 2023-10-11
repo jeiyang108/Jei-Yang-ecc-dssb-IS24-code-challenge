@@ -1,0 +1,47 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+ECC.UI/dist
+ECC.UI/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/ECC.UI/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+ECC.UI/.vscode/*
+ECC.UI/!.vscode/settings.json
+ECC.UI/!.vscode/tasks.json
+ECC.UI/!.vscode/launch.json
+ECC.UI/!.vscode/extensions.json
+ECC.UI/.history/*
+
+# Miscellaneous
+ECC.UI/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db
+
+#Visual Studio
+ECC.API/bin/
+ECC.API/obj/
+.vs/ECC/FileContentIndex/
