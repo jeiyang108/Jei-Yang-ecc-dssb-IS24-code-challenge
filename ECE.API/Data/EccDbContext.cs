@@ -20,10 +20,11 @@ namespace ECC.API.Data
         }
 
         /*
-            Since  database implementation was not part of the requirements, mock data will be directly added to the ViewModels which are used in the front-end.
-            Usually normalized db models can be used. (Example entity models are in the ECC.API/Models folder.)
+            Since database implementation was not part of the requirements, mock data will be directly added to the Models.
+            When database is implemented, SeedData function can be commented out.
+            ViewModels represent how data is displayed or captured in the user interface.
          */
-        
+
         public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<ProductDeveloper> ProductDevelopers { get; set; }
