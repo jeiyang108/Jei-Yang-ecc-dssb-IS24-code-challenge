@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ECC.API.Data;
 using ECC.API.Models;
 using Microsoft.AspNetCore.SignalR;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace ECC.API.Controllers
 {
@@ -23,6 +24,8 @@ namespace ECC.API.Controllers
         }
 
         // GET: api/Product
+        [SwaggerOperation(
+            Summary = "Get All Products", Description = "The GET endpoint retrieves all project records, along with product owner, scrum master and developer users that are associated to each project. As your front-end application call http://localhost:3000/api/product, an array of Product will be returned in JSON format.")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductViewModel>>> GetAllProducts()
         {
@@ -57,6 +60,8 @@ namespace ECC.API.Controllers
 
         // GET: api/Product/5
         [HttpGet("{id}")]
+        [SwaggerOperation(
+            Summary = "Get Product by ID", Description = "The GET endpoint retireves details of a product with the given ID. As your front-end application call http://localhost:3000/api/product/id, a Product will be returned in JSON format.")]
         public async Task<ActionResult<ProductViewModel>> GetProduct(int id)
         {
             var viewModel = await (from product in _context.Products
@@ -95,6 +100,8 @@ namespace ECC.API.Controllers
 
         // PUT: api/Product/5
         [HttpPut("{id:int}")]
+        [SwaggerOperation(
+            Summary = "Update an existing Product", Description = "The PUT request requires ID and the body. Product ID is as part of the URL(http://localhost:3000/api/product/id) and the updated product data should be passed as the request body. The provided product data is compared to the previous version stored in the database, and all columns and associated user entities are updated based on the request.")]
         public async Task<IActionResult> UpdateProduct([FromRoute] int id, [FromBody] ProductViewModel product)
         {
             // Validation
@@ -102,7 +109,7 @@ namespace ECC.API.Controllers
             {
                 return BadRequest("Make sure to enter Product Name and Location");
             }
-            if (!product.Location.StartsWith("http") && !product.Location.StartsWith("github.com/"))
+            if (!product.Location.StartsWith("http") && !product.Location.StartsWith("github.com/") && !product.Location.StartsWith("www."))
             {
                 return BadRequest("Please provide a valid URL for location");
             }
@@ -144,7 +151,7 @@ namespace ECC.API.Controllers
                 dbProduct.StartDate = product.StartDate;
                 dbProduct.ProductDevelopers = await _context.ProductDevelopers.Where(pd => pd.ProductId == id).ToListAsync();
 
-                // Iterate through the drink developer list of DB
+                // Iterate through the developer list of DB
                 foreach (var dev in dbProduct.ProductDevelopers)
                 {
                     // The developer needs to be removed from DB as it does not exist in the view model.
@@ -205,6 +212,7 @@ namespace ECC.API.Controllers
 
         // POST: api/Product
         [HttpPost]
+        [SwaggerOperation(Summary = "Create a new Product", Description = "As your front-end application call http://localhost:3000/api/product along with the request body, a new Product record is created using the provided data, and added to the database. After a successful creation, it will return a Product data including a newly generated Product ID, which can be used to reload the front-end interface.")]
         public async Task<ActionResult<ProductViewModel>> AddProduct([FromBody] ProductViewModel product)
         {
             // Validation
@@ -212,7 +220,7 @@ namespace ECC.API.Controllers
                 {
                 return BadRequest("Make sure to enter Product Name and Location");
             }
-            if (!product.Location.StartsWith("http") && !product.Location.StartsWith("github.com/"))
+            if (!product.Location.StartsWith("http") && !product.Location.StartsWith("github.com/") && !product.Location.StartsWith("www."))
             {
                 return BadRequest("Please provide a valid URL for location");
             }

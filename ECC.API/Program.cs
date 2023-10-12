@@ -17,8 +17,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
+    c.EnableAnnotations();
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API", Version = "v1" });
 });
+
+builder.Services.AddHealthChecks();
 
 // Configure CORS
 builder.Services.AddCors(options =>
@@ -32,6 +35,8 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+app.MapHealthChecks("/health");
 
 // Enable CORS
 app.UseCors("MyCorsPolicy");
