@@ -1,0 +1,51 @@
+<div class="container my-5 px-2">
+  <h1 class="mb-4">Product Catalog</h1>
+  <div class="mb-5" style="display: flex;">
+    <button type="button" class="btn custom-btn me-5" routerLink="/product/add">Add New Product</button>
+
+    <label for="searchType" class="p-2">Search By:</label>
+    <select id="selectedSearchType" class="select me-1" name="selectedSearchType" [(ngModel)]="selectedSearchType" (change)="filterProducts($event)">
+      <option *ngFor="let option of searchOptions" [value]="option">{{ option }}</option>
+    </select>
+    <form class="d-flex" role="search">
+      <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search"  id="searchText" name="searchText" [(ngModel)]="searchText" (input)="filterProducts($event)">
+    </form>
+  </div>
+
+  <!-- Table -->
+  <div id="datatable">
+    <table class="table table-hover" *ngIf="products && products.length > 0">
+      <thead>
+        <tr>
+          <th>Product #</th>
+          <th>Product Name</th>
+          <th>Scrum Master</th>
+          <th>Product Owner</th>
+          <th>Developers</th>
+          <th>Start Date</th>
+          <th>Methodology</th>
+          <th>Location</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of dataSource.filteredData">
+          <td>{{ product.productNumber }}</td>
+          <td>{{ product.productName }}</td>
+          <td>{{ product.scrumMaster.userName }}</td>
+          <td>{{ product.productOwner.userName }}</td>
+          <td>{{ product.developerNames }}</td>
+          <td>{{ product.startDate | date:'MMM dd, yyyy' }}</td>
+          <td>{{ product.methodology }}</td>
+          <td>{{ product.location }}</td>
+          <td><a [routerLink]="['/product','edit',product.productId]">Edit</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <mat-paginator #paginator (page)="onPageChanged($event)" [length]="products.length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5,10,15]">
+    </mat-paginator>
+    <p *ngIf="!products || products.length <= 0">No products Found</p>
+  </div>
+
+</div>

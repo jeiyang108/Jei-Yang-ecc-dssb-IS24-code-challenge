@@ -1,0 +1,91 @@
+<div class="py-4 bg-body-tertiary">
+  <div class="container my-3">
+    <div>
+      <h1 class="mb-3">Update Product</h1>
+      <div [ngClass]="alertBannerClass" *ngIf="showAlertBanner">
+        {{ alertMessage }}
+      </div>
+    </div>
+    <form #form="ngForm" class="row" (ngSubmit)="updateProduct()">
+      <div class="col-sm-5">
+        <div class="mb-3">
+          <label for="productId" class="h6 form-label">ID</label>
+          <input type="text" class="form-control" id="productId" name="productId" [(ngModel)]="updateProductRequest.productId" disabled readonly>
+        </div>
+        <div class="mb-3">
+          <label for="productNumber" class="h6 form-label">Product Number</label>
+          <input type="text" class="form-control" id="productNumber" name="productNumber" [(ngModel)]="updateProductRequest.productNumber" disabled readonly>
+        </div>
+        <div class="mb-3">
+          <label for="productName" class="h6 form-label">Product Name</label>
+          <input type="text" class="form-control" id="productName" name="productName" [(ngModel)]="updateProductRequest.productName">
+        </div>
+        <div class="mb-3">
+          <label for="methodology" class="h6 form-label">Methodology</label>
+          <input type="text" class="form-control" id="methodology" name="methodology" [(ngModel)]="updateProductRequest.methodology">
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <div class="mb-3">
+          <label for="location" class="h6 form-label">Location (URL)</label>
+          <input type="text" class="form-control" id="location" name="location" [(ngModel)]="updateProductRequest.location">
+        </div>
+        <div class="mb-3">
+          <label for="startDateFormatted" class="h6 form-label">Start Date</label>
+          <input type="text" class="form-control" id="startDateFormatted" name="startDateFormatted" [(ngModel)]="updateProductRequest.startDateFormatted">
+
+        </div>
+        <div class="mb-3">
+          <label for="productOwner" class="h6 form-label">Product Owner</label>
+          <input type="text" class="form-control" id="productOwner" name="productOwner" [(ngModel)]="updateProductRequest.productOwner.userName">
+        </div>
+        <div class="mb-3">
+          <label for="scrumMaster" class="h6 form-label">Scrum Master</label>
+          <input type="text" class="form-control" id="scrumMaster" name="scrumMaster" [(ngModel)]="updateProductRequest.scrumMaster.userName">
+        </div>
+      </div>
+      <hr class="mt-4">
+      <div class="mt-4 col-sm-5">
+        <div class="mb-3">
+          <label for="developers" class="h6 form-label">Existing Developer Search</label> <br>
+          <input class="form-control" list="developerDataList" id="developerListInput" [(ngModel)]="selectedDeveloper.userName" name="developerName" placeholder="Search for an existing developer...">
+          <datalist id="developerDataList" name="selectedDeveloper">
+            <option *ngFor="let item of developerList" [ngValue]="item.userName" class="datalist-options">{{item.userName}}</option>
+          </datalist>
+          <button class="btn btn-outline-secondary mt-1" type="button" (click)="addSelectedDeveloper(selectedDeveloper)">Add</button>
+        </div>
+
+        <div class="mb-3">
+          <h3><b style="color:red;">OR</b> Add a new developer to the system</h3>
+        </div>
+
+        <div class="mb-3">
+          <label for="newDeveloper" class="h6 form-label">New Developer</label>
+          <input type="text" class="form-control" id="newDeveloper" name="userName" placeholder="Enter a developer name to add" [(ngModel)]="newDeveloper.userName">
+          <button class="btn btn-outline-secondary mt-1" type="button" (click)="addNewDeveloper(newDeveloper)">Create</button>
+        </div>
+      </div>
+
+      <div class="mt-5 ms-4 col-sm-5">
+        <table class="table table-light">
+          <thead>
+            <h2>Product Developers</h2>
+          </thead>
+          <tbody>
+          <tr *ngFor="let developer of updateProductRequest.developers">
+            <td class="col-3">{{developer.userName }}</td>
+            <td class="col-2"><span class="btn btn-danger btn-sm" type="button" (click)="removeDeveloper(developer)">Remove</span></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Button Group -->
+      <div class="col-sm-6">
+        <div class="my-1 btn-group">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="button" routerLink="/products" class="btn btn-secondary">Back</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
