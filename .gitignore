@@ -30,7 +30,7 @@ ECC.UI/!.vscode/extensions.json
 ECC.UI/.history/*
 
 # Miscellaneous
-ECC.UI/.angular/cache
+ECC.UI/.angular/
 .sass-cache/
 /connect.lock
 /coverage
@@ -45,7 +45,7 @@ Thumbs.db
 #Visual Studio
 /ECC.API/bin/*
 /ECC.API/obj/*
-/.vs/ECC/
+.vs/
 ECC.API/bin
 ECC.API/obj
 *.pdb
